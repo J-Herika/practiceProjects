@@ -1,9 +1,13 @@
 let humanScore = 0;
 let computerScore = 0;
 
+let humanChoice;
+
 const ROCK = "Rock";
 const PAPER = "Paper";
 const SCISSORS = "Scissors";
+
+const btnContainer = document.getElementById("btn-container");
 
 const getComputerChoice = () => {
   let randNum = Math.floor(Math.random() * 3 + 1);
@@ -17,24 +21,8 @@ const getComputerChoice = () => {
   }
 };
 
-const getHumanChoice = () => {
-  let humanChoice = parseInt(
-    prompt("Choose Rock = 1,Paper = 2, or Scissors = 3"),
-  );
-  switch (humanChoice) {
-    case 1:
-      return ROCK;
-    case 2:
-      return PAPER;
-    case 3:
-      return SCISSORS;
-  }
-  return humanChoice;
-};
-
 const playRound = () => {
   let computerChoice = getComputerChoice();
-  let humanChoice = getHumanChoice();
 
   if (computerChoice == humanChoice) {
     console.log("Draw");
@@ -68,4 +56,24 @@ const playGame = () => {
   }
 };
 
-playGame();
+btnContainer.addEventListener("click", (event) => {
+  switch (event.target.className) {
+    case "btn-rock":
+      humanChoice = ROCK;
+      console.log("rock");
+      break;
+    case "btn-paper":
+      humanChoice = PAPER;
+      console.log("paper");
+      break;
+    case "btn-scissors":
+      humanChoice = SCISSORS;
+      console.log("scissors");
+      break;
+    default:
+      break;
+  }
+  playRound();
+});
+
+// playGame();
