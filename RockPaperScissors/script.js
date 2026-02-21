@@ -2,12 +2,14 @@ let humanScore = 0;
 let computerScore = 0;
 
 let humanChoice;
+let isGameOver = false;
 
 const ROCK = "Rock";
 const PAPER = "Paper";
 const SCISSORS = "Scissors";
 
 const btnContainer = document.getElementById("btn-container");
+const elScore = document.getElementById("score");
 
 const getComputerChoice = () => {
   let randNum = Math.floor(Math.random() * 3 + 1);
@@ -44,6 +46,7 @@ const playRound = () => {
   console.log("-----------");
 };
 
+const endGame = () => {};
 const playGame = () => {
   while (humanScore < 5 && computerScore < 5) {
     playRound();
@@ -56,24 +59,37 @@ const playGame = () => {
   }
 };
 
-btnContainer.addEventListener("click", (event) => {
-  switch (event.target.className) {
-    case "btn-rock":
-      humanChoice = ROCK;
-      console.log("rock");
-      break;
-    case "btn-paper":
-      humanChoice = PAPER;
-      console.log("paper");
-      break;
-    case "btn-scissors":
-      humanChoice = SCISSORS;
-      console.log("scissors");
-      break;
-    default:
-      break;
-  }
-  playRound();
-});
+const updateScore = () => {
+  elScore.textContent = `${humanScore} : ${computerScore}`;
+};
 
-// playGame();
+btnContainer.addEventListener("click", (event) => {
+  if (!isGameOver) {
+    switch (event.target.className) {
+      case "btn-rock":
+        humanChoice = ROCK;
+        console.log("rock");
+        break;
+      case "btn-paper":
+        humanChoice = PAPER;
+        console.log("paper");
+        break;
+      case "btn-scissors":
+        humanChoice = SCISSORS;
+        console.log("scissors");
+        break;
+      default:
+        break;
+    }
+    if (humanScore < 5 && computerScore < 5) {
+      playRound();
+      updateScore();
+    } else if (humanScore >= 5 && computerScore < 5) {
+      isGameOver = true;
+      console.log("YOU WON CONGRATS!!!!!");
+    } else {
+      isGameOver = true;
+      console.log("You lost. better luck next time.");
+    }
+  }
+});

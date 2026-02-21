@@ -12,6 +12,9 @@
       <h1>ROCK PAPER SCISSORS</h1>
     </header>
     <main>
+      <div id="score-container">
+        <p id="score">0 : 0</p>
+      </div>
       <section id="btn-container">
         <button class="btn-rock">ROCK</button>
         <button class="btn-paper">PAPER</button>
@@ -20,3 +23,18 @@
     </main>
   </body>
 </html>
+
+<!-- 
+  what is the problem??
+
+  1- the playGame() is in the eventListener
+  - so it plays all the rounds at once.
+  2- how to make it play round by round??
+    - the user clicks and plays in his own term i don't control it he does.
+    - so i have to set it around when he clicks
+    steps:
+      1- human chooses a choice.
+      2- get the computer choice.
+      3- add points to who won.
+      4- check if the point reached 5. if it did end game. else continue.
+-->
